@@ -1,11 +1,13 @@
 from xkeysnail.transform import *
 import re
+
 define_multipurpose_modmap(
     # Enter is enter when pressed and released. Control when held down.
     {Key.ENTER: [Key.ENTER, Key.RIGHT_CTRL],
 
     # Capslock is escape when pressed and released. Control when held down.
-    Key.CAPSLOCK: [Key.ESC, Key.LEFT_CTRL]}
+    # Key.CAPSLOCK: [Key.ESC, Key.LEFT_CTRL],
+    Key.LEFT_CTRL: [Key.ESC, Key.LEFT_CTRL]}
 )
 
 define_keymap(re.compile("Tilix|Konsole"), {
@@ -32,4 +34,5 @@ define_keymap(None, {
     K("Super-q"): K("C-q"),
     K("Super-l"): K("C-l"),
     K("Super-r"): K("C-r"),
+    K("Super-LAlt-SLASH"): K("Super-SLASH"),
 }, "Browser")
