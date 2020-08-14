@@ -89,6 +89,12 @@ function loadall(){
     PATH=$(echo $PATH | tr ':' '\n' | uniq | tr '\n' ':')
     reload
     cd $currPwd
+    if [[ `uname` == 'Linux' && ! `pgrep xkeysnail` ]]; then
+      sudo rmmod hid_magicmouse
+      sudo modprobe hid_magicmouse emulate_3button=0 scroll_acceleration=0.85 scroll_speed=25
+      keymap
+    fi
+
 }
 function loadallifneeded(){
   if [[ ! $NVM_DIR =~ $HOME ]]; then

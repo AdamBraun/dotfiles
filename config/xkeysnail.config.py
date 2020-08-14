@@ -1,14 +1,15 @@
 from xkeysnail.transform import *
+from string import ascii_lowercase, ascii_uppercase
 import re
 
-define_multipurpose_modmap(
+define_multipurpose_modmap({
     # Enter is enter when pressed and released. Control when held down.
-    {Key.ENTER: [Key.ENTER, Key.RIGHT_CTRL],
+    Key.ENTER: [Key.ENTER, Key.RIGHT_CTRL],
 
     # Capslock is escape when pressed and released. Control when held down.
     # Key.CAPSLOCK: [Key.ESC, Key.LEFT_CTRL],
-    Key.LEFT_CTRL: [Key.ESC, Key.LEFT_CTRL]}
-)
+    Key.LEFT_CTRL: [Key.ESC, Key.LEFT_CTRL]
+})
 
 define_keymap(re.compile("Tilix|Konsole"), {
     # copy/paste
@@ -22,17 +23,20 @@ define_keymap(re.compile("Tilix|Konsole"), {
     #zoom
     K("Super-EQUAL"): K("C-Shift-EQUAL"),
     K("Super-MINUS"): K("C-MINUS"),
+    #find
+    K("Super-f"): K("C-Shift-f")
 }, "Copy paste in tilix terminal")
 
-define_keymap(None, {
+browserMap = {
+    K("Super-Alt-i"): K("C-Shift-i"),
     K("Super-EQUAL"): K("C-EQUAL"),
     K("Super-MINUS"): K("C-MINUS"),
-    K("Super-c"): K("C-c"),
-    K("Super-v"): K("C-v"),
-    K("Super-a"): K("C-a"),
-    K("Super-w"): K("C-w"),
-    K("Super-q"): K("C-q"),
-    K("Super-l"): K("C-l"),
-    K("Super-r"): K("C-r"),
-    K("Super-LAlt-SLASH"): K("Super-SLASH"),
-}, "Browser")
+    K("Super-LAlt-SLASH"): K("Super-SLASH")
+}
+for c in ascii_lowercase:
+    browserMap[K("Super-" + c)] = K("C-" + c)
+    browserMap[K("Super-Shift-" + c)] = K("C-Shift-" + c)
+
+define_keymap(lambda wm_class: wm_class not in ("Tilix"), browserMap, 'Cmd to Ctrl not in terminal')
+
+# define_keymap(re.compile("firefox|Chrome"), browserMap, 'ha')

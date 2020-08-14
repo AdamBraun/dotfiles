@@ -162,7 +162,7 @@ alias resetnpm='rm -rf ~/.npm && rm -rf node_modules && npm cache clear && npm i
 alias egrep='egrep --color=auto'
 alias setbash='chsh -s /bin/bash'
 # alias grep='egrep'
-alias ls='ls -GF1'
+alias ls='ls -GF1 --color=auto'
 alias "\a"='fag'
 alias gst='git status'
 alias gls='git log --stat'
