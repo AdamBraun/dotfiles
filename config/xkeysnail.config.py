@@ -31,12 +31,15 @@ browserMap = {
     K("Super-Alt-i"): K("C-Shift-i"),
     K("Super-EQUAL"): K("C-EQUAL"),
     K("Super-MINUS"): K("C-MINUS"),
-    K("Super-LAlt-SLASH"): K("Super-SLASH")
+    K("Super-SLASH"): K("C-SLASH")
 }
 for c in ascii_lowercase:
     browserMap[K("Super-" + c)] = K("C-" + c)
     browserMap[K("Super-Shift-" + c)] = K("C-Shift-" + c)
 
 define_keymap(lambda wm_class: wm_class not in ("Tilix"), browserMap, 'Cmd to Ctrl not in terminal')
+define_keymap(None, {
+    K("Super-LAlt-SLASH"): K("Super-SLASH")
+}, "fix gnome not allowing toggle-maximize with Super-Alt-/")
 
 # define_keymap(re.compile("firefox|Chrome"), browserMap, 'ha')
