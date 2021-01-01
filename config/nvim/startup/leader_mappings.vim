@@ -208,7 +208,6 @@ map <space>st :Scripts<cr>
 "visual mode on pasted text
 nnoremap <space>vp `[v`]
 "same as :quit
-nmap \w :wincmd q<cr>
 nmap \q :wincmd q<cr>
 nmap <S-Up> v<Plug>(expand_region_expand)
 vmap <S-UP> <Plug>(expand_region_expand)
@@ -277,3 +276,18 @@ nmap <space>rb :Shell! [[ -f .nvmrc ]] && nvm use $(cat .nvmrc); export MOCHA_OP
 cnoremap <c-space> <C-l><C-d>
 cnoremap <c-p> <up>
 cnoremap <c-n> <down>
+ 
+
+" function! s:vimspector_maps() 
+"     let saved = [
+"                 \['\w', maparg('\w', 'n')],
+"                 \['\t', maparg('\t', 'n')],
+"                 \['\c', maparg('\c', 'n')]
+"                 \]
+"     nmap \w :call win_gotoid(g:vimspector_session_windows.watches)<cr>
+"     nmap \c :call win_gotoid(g:vimspector_session_windows.code)<cr>
+"     nmap \t :call win_gotoid(g:vimspector_session_windows.stack_trace)<cr>
+"     nmap \v :call win_gotoid(g:vimspector_session_windows.variables)<cr>
+"     nmap \p :call win_gotoid(g:vimspector_session_windows.tabpage)<cr>
+" endfunction
+autocmd! User VimspectorUICreated :CocCommand vim-js.vimspector.start

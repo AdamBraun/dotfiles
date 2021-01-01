@@ -34,6 +34,7 @@ Plug 'davidsu/vim-plugin-AnsiEsc'                                  " type :AnsiE
 Plug 'blueyed/vim-diminactive' 
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
+Plug 'puremourning/vimspector'
 let g:nvim_typescript#quiet_startup=1
 let g:nvim_typescript#suggestions_enabled=0
 let g:nvim_typescript#diagnosticsEnable=0
